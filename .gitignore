@@ -1,4 +1,12 @@
+# Virtual Environment Configuration
 .venv
+
+# Visual Studio Code Configuration
 .vscode
+
+# Images to scan
 documents
+
+# Output
 *.xlsx
+output
