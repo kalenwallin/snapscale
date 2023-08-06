@@ -10,8 +10,19 @@ sys.path.append("./src")
 # Import local libraries
 import img_manipulation
 
-# Your image folder and file
-image_dir = "documents/"
+# TODO: Write the beginning of the Excel sheet
+# TODO: Jeff Wallin, PO Box 240, Imperial NE 69033
+# TODO: Sold To: {Feedlot} Field: {Field #}
+# TODO: Feedlot and Field # can be added from User Interface
+# TODO: Headers: Date, Ticket #, Gross, Tare, MO, TW, Net, Wet Bu, Dry Bu, Driver, Truck
+
+# Your image folder from argument 1
+image_dir = sys.argv[1]
+
+# TODO: Iterate through image_dir's jpg files
+# TODO: For each jpg, process it as a line in an Excel sheet
+
+# Your image file
 image_file = "fvc1.jpg"
 image_path = image_dir + image_file
 
@@ -46,6 +57,9 @@ for idx, value in enumerate(values, start=1):
     # This assumes you want each value in a separate cell in the first column
     ws.cell(row=idx, column=1, value=value)
     print(str(idx) + " : " + value)
+    
+# TODO: Write the Totals line: Totals, ___, Gross, Tare, ___, ___, Net, Wet Bu, Dry Bu, ____, ____
+# TODO: Write Acres Yield
 
 # Save the workbook
 wb.save("output/fvc_output.xlsx")

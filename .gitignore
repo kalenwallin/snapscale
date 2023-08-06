@@ -10,3 +10,6 @@ documents
 # Output
 *.xlsx
 output
+
+# Cache
+__pycache__
