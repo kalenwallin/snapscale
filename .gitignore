@@ -5,7 +5,7 @@
 .vscode
 
 # Images to scan
-documents
+# documents
 
 # Output
 *.xlsx
