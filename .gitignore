@@ -13,3 +13,4 @@ output
 
 # Cache
 __pycache__
+*.Identifier
