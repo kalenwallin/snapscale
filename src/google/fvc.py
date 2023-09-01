@@ -1,11 +1,10 @@
 # Import required libraries
-from google.cloud import vision
+# Check src directory for packages
 from openpyxl import Workbook
 
-# Check src directory for packages
-import sys
-
-sys.path.append("./src")
+from google.cloud import vision
+from src.classes import process_image_as_corn_ticket
+from src.excel_utils import write_sheet
 
 # Your image path
 image_path = "documents/fvc/505344-scan.jpg"
@@ -13,34 +12,16 @@ image_path = "documents/fvc/505344-scan.jpg"
 # Instantiate a Vision client
 client = vision.ImageAnnotatorClient()
 
-# Read the image file
-with open(image_path, "rb") as image_file:
-    content = image_file.read()
-
-image = vision.Image(content=content)
-
-response = client.text_detection(image=image)
-texts = response.text_annotations
-print("Texts:")
-
-for text in texts:
-    print(f'\n"{text.description}"')
-
-    vertices = [f"({vertex.x},{vertex.y})" for vertex in text.bounding_poly.vertices]
-
-    print("bounds: {}".format(",".join(vertices)))
-
-if response.error.message:
-    raise Exception(
-        "{}\nFor more info on error messages, check: "
-        "https://cloud.google.com/apis/design/errors".format(response.error.message)
-    )
+tickets = []
+corn_ticket = process_image_as_corn_ticket(client, image_path)
+tickets.append(corn_ticket)
 
 # Process the text as required and write to Excel
 # Create a workbook and select the active worksheet
-# workbook = Workbook()
-# worksheet = workbook.active
+wb = Workbook()
+ws = wb.active
 
+write_sheet(ws, tickets, "FVC", "")
 
-# # Save the workbook
-# workbook.save("output/fvc_output_scan.xlsx")
+# Save the workbook
+wb.save("output/fvc_single.xlsx")
