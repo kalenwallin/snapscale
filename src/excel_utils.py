@@ -1,6 +1,5 @@
-import datetime
 from openpyxl import Workbook
-from openpyxl.styles import NamedStyle, Font, Alignment, Border, Side
+from openpyxl.styles import Alignment, Border, Font, NamedStyle, Side
 
 from src.classes import (
     generate_mock_tickets,
@@ -44,7 +43,7 @@ def write_header(worksheet, location="", field=""):
     write_field(worksheet, field)
     write_headers(worksheet)
 
-    return workbook
+    return worksheet
 
 
 def write_contact_info(worksheet):
@@ -173,7 +172,7 @@ def write_tickets(worksheet, tickets, start_row=12):
     attribute_actions = {
         "wetBu": lambda val: round(val, 2),
         "dryBu": lambda val: round(val, 2),
-        "ticket": round,
+        "ticket": lambda val: val,
         "gross": round,
         "tare": round,
         "net": round,
