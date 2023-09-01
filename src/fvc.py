@@ -1,8 +1,8 @@
 # Import required libraries
 # Check src directory for packages
+from google.cloud import vision
 from openpyxl import Workbook
 
-from google.cloud import vision
 from src.classes import process_image_as_corn_ticket
 from src.excel_utils import write_sheet
 
