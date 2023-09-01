@@ -1,65 +1,38 @@
 # Import required libraries
-import pytesseract
-from openpyxl import Workbook
-import cv2
-
 # Check src directory for packages
+import os
 import sys
-sys.path.append("./src")
 
-# Import local libraries
-import img_manipulation
+from openpyxl import Workbook
 
-# TODO: Write the beginning of the Excel sheet
-# TODO: Jeff Wallin, PO Box 240, Imperial NE 69033
-# TODO: Sold To: {Feedlot} Field: {Field #}
-# TODO: Feedlot and Field # can be added from User Interface
-# TODO: Headers: Date, Ticket #, Gross, Tare, MO, TW, Net, Wet Bu, Dry Bu, Driver, Truck
+from google.cloud import vision
+from src.classes import process_image_as_corn_ticket
+from src.excel_utils import write_sheet
 
-# Your image folder from argument 1
-image_dir = sys.argv[1]
+# Instantiate a Vision client
+client = vision.ImageAnnotatorClient()
 
-# TODO: Iterate through image_dir's jpg files
-# TODO: For each jpg, process it as a line in an Excel sheet
+image_dir = sys.argv[1] if len(sys.argv) > 1 else "documents/fvc/52021"
+location = sys.argv[2] if len(sys.argv) > 2 else ""
+field = sys.argv[3] if len(sys.argv) > 3 else ""
 
-# Your image file
-image_file = "fvc1.jpg"
-image_path = image_dir + image_file
+tickets = []
 
-# Load the image from disk
-img = cv2.imread(image_path)
-
-# Convert to grayscale
-gray = img_manipulation.get_grayscale(img)
-
-# Thresholding 
-_, img_bin = cv2.threshold(gray, 128, 255, cv2.THRESH_BINARY | cv2.THRESH_OTSU)
-
-# Inverting the image
-img_bin = 255-img_bin
-
-# Apply OCR to the image
-text = pytesseract.image_to_string(img_bin)
-
-# Print extracted text
-print(text)
-print("\n====\n")
+# Iterate through image_dir's images
+for file_name in os.listdir(image_dir):
+    if file_name.endswith(
+        (".jpeg", ".jpg", ".png", ".webp", ".gif", ".bmp", ".ico" ".pdf", ".tiff")
+    ):
+        image_path = os.path.join(image_dir, file_name)
+        corn_ticket = process_image_as_corn_ticket(client, image_path)
+        tickets.append(corn_ticket)
 
 # Process the text as required and write to Excel
 # Create a workbook and select the active worksheet
 wb = Workbook()
 ws = wb.active
 
-# Let's assume the extracted text is a list of values
-values = text.split()
-
-for idx, value in enumerate(values, start=1):
-    # This assumes you want each value in a separate cell in the first column
-    ws.cell(row=idx, column=1, value=value)
-    print(str(idx) + " : " + value)
-    
-# TODO: Write the Totals line: Totals, ___, Gross, Tare, ___, ___, Net, Wet Bu, Dry Bu, ____, ____
-# TODO: Write Acres Yield
+write_sheet(ws, tickets, location, field)
 
 # Save the workbook
-wb.save("output/fvc_output.xlsx")
+wb.save("output/output.xlsx")
