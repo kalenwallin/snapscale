@@ -9,7 +9,7 @@ import sys
 sys.path.append("./src")
 
 # Import local libraries
-import img_manipulation
+import src.tesseract.img_manipulation as img_manipulation
 
 # Your image folder and file
 image_dir = "documents/"
