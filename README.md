@@ -6,9 +6,4 @@
 </p>
 
 <p align="center">A Python module to generate corn harvest reports for Wallin Farms.</p>
-
-<br/>
-
-## Introduction
-
-[Learn more about this project on Kalen's blog](https://blog.kalenwallin.com/auto-corn-ticket)
+<a href="https://blog.kalenwallin.com/auto-corn-ticket"><p align="center">Learn more about this project on my blog</p></a>
