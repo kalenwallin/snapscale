@@ -5,7 +5,7 @@
   </a>
 </p>
 
-<p align="center">A python module to generate corn harvest reports for Wallin Farms.</p>
+<p align="center">A Python module to generate corn harvest reports for Wallin Farms.</p>
 
 <br/>
 
