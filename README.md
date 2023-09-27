@@ -1,9 +1,9 @@
 <p align="center">
   <a href="https://wallinfarms.us">
-    <img src="https://kalenwallin.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Fbfe12e56-754d-49b4-8922-9aceffba75be%2Fcorn.png?table=block&id=d448045d-dbac-4145-aaef-3c16c1a07417&spaceId=cd70831b-555b-4b5b-8a91-01b5143fa3c2&width=250&userId=&cache=v2" height="96">
-    <h3 align="center">Auto Corn Ticket</h3>
+    <img src="https://wallinfarms.us/icon.svg" height="96">
+    <h3 align="center">Auto Scale Ticket</h3>
   </a>
 </p>
 
-<p align="center">A Python module to generate corn harvest reports for Wallin Farms.</p>
-<a href="https://blog.kalenwallin.com/auto-corn-ticket"><p align="center">Learn more about this project on my blog</p></a>
+<p align="center">A Python module to generate harvest reports for Wallin Farms.</p>
+<a href="https://blog.kalenwallin.com/wallin-farms"><p align="center">Learn more about this project on my blog</p></a>
