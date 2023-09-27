@@ -1,7 +1,7 @@
 <p align="center">
   <a href="https://wallinfarms.us">
-    <img src="https://wallinfarms.us/icon.svg" height="96">
-    <h3 align="center">Auto Scale Ticket</h3>
+    <img src="https://wallinfarms.us/amoled/ss-icon.svg" height="96">
+    <h3 align="center">SnapScale</h3>
   </a>
 </p>
 

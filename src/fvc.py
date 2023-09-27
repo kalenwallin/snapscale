@@ -3,7 +3,7 @@
 from google.cloud import vision
 from openpyxl import Workbook
 
-from src.classes import process_image_as_corn_ticket
+from src.classes import process_image_as_scale_ticket
 from src.excel_utils import write_sheet
 
 # Your image path
@@ -13,8 +13,8 @@ image_path = "documents/fvc/505344-scan.jpg"
 client = vision.ImageAnnotatorClient()
 
 tickets = []
-corn_ticket = process_image_as_corn_ticket(client, image_path)
-tickets.append(corn_ticket)
+scale_ticket = process_image_as_scale_ticket(client, image_path)
+tickets.append(scale_ticket)
 
 # Process the text as required and write to Excel
 # Create a workbook and select the active worksheet

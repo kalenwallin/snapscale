@@ -1,7 +1,7 @@
 import datetime
 
 
-class CornTicket:
+class ScaleTicket:
     def __init__(self, date, ticket, gross=0, tare=0, mo=0, tw=0, driver="", truck=""):
         self.date = date
         self.ticket = ticket
@@ -21,7 +21,7 @@ class CornTicket:
 
     def __str__(self):
         return (
-            f"CornTicket({self.date}, {self.ticket}, "
+            f"ScaleTicket({self.date}, {self.ticket}, "
             f"gross={self.gross}, tare={self.tare}, "
             f"mo={self.mo}, tw={self.tw}, "
             f"driver={self.driver}, truck={self.truck})"
@@ -122,9 +122,9 @@ def generate_random_field_number():
 
 def generate_mock_ticket():
     """
-    Generate a mock CornTicket object.
+    Generate a mock ScaleTicket object.
     """
-    return CornTicket(
+    return ScaleTicket(
         date=generate_random_date(2023),
         ticket=random.randint(1, 1000),
         gross=random.randint(50000, 99999),
@@ -138,7 +138,7 @@ def generate_mock_ticket():
 
 def generate_mock_tickets(num_tickets=2):
     """
-    Generate a list of mock CornTicket objects based on the number of tickets provided.
+    Generate a list of mock ScaleTicket objects based on the number of tickets provided.
     """
     return [generate_mock_ticket() for _ in range(num_tickets)]
 
@@ -149,8 +149,8 @@ from datetime import datetime
 from google.cloud import vision
 
 
-def process_image_as_corn_ticket(client, image_path):
-    """Detects text as a CornTicket in an image."""
+def process_image_as_scale_ticket(client, image_path):
+    """Detects text as a ScaleTicket in an image."""
     with open(image_path, "rb") as image_file:
         content = image_file.read()
 
@@ -211,6 +211,6 @@ def process_image_as_corn_ticket(client, image_path):
             "{}\nFor more info on error messages, check: "
             "https://cloud.google.com/apis/design/errors".format(response.error.message)
         )
-    corn_ticket = CornTicket(date, ticket, gross, tare, mo, tw)
-    print(corn_ticket)
-    return corn_ticket
+    scale_ticket = ScaleTicket(date, ticket, gross, tare, mo, tw)
+    print(scale_ticket)
+    return scale_ticket
